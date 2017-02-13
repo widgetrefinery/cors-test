@@ -1,0 +1,26 @@
+<html><head><title>Test CORS</title></head>
+<body>
+<form onsubmit="return run()">
+<input id="url" type="text">
+<input type="submit" value="Run"/>
+</form>
+<div id="output"></div>
+<script>
+function run() {
+	var url = document.getElementById("url").value;
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			document.getElementById("output").innerHTML=xhr.responseText;
+		}
+	};
+	xhr.open("GET",url);
+	xhr.send();
+	return false;
+}
+if (window.location.hash) {
+	document.getElementById("url").value = window.location.hash.substr(1);
+}
+</script>
+</body>
+</html>
